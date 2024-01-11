@@ -1,0 +1,26 @@
+{% extends 'gerenciamento_topbar.html' %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/external/toastr.css')}}">
+
+<div class="container">
+    <div class="col">
+        <div class="row align-items-center justify-content-around">
+            <!-- <button type="button" class="col-3 btn btn-outline-dark" id="btn-add-table">Add novo</button>
+            <button type="button" class="col-3 btn btn-outline-dark" id="btn-delete-table">Delete ultimo</button> -->
+            <!-- <button type="button" class="col-3 btn btn-outline-dark" id="btn-update-table">Atualizar as informações</button> -->
+            <!-- <button type="button" class="col-3 btn btn-success" id="btn-save-table">Salvar</button> -->
+        </div>
+        <div id="table" style="margin-top: 1em;"></div>
+    </div>
+</div>
+
+<script type='text/javascript' src="{{url_for('static', filename='js/external/jquery-3.6.1.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/toastr.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/external/tabulator.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/tabulator/buttonsEdit.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/tabulator/editFields.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/tabulator/loadAjax.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/tabulator/usuarios.js')}}"></script>
+
+{% endblock %}

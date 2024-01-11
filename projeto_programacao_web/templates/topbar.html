@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marmoraria</title>
+  <link rel="icon" type="image/x-icon" href="../images/icon_copy.ico">
+  <!-- import css -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/external/bootstrap.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/home.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/contact.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/projetos.css')}}">
+</head>
+<body class="bg-dark">
+  <div class="container-fluid sticky-top" style="background-color: #233a3794">
+    <div class="container">
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="{{url_for('root_routes.home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <img src="static\images\logopng.png" alt="Logo marmoraria" width="93,5" height="59,5">
+        </a>
+
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a href="{{url_for('root_routes.home')}}" class="nav-link" aria-current="true" id="home">Home</a></li>
+          <li class="nav-item"><a href="{{url_for('root_routes.projetos')}}" class="nav-link" aria-current="true" id="projetos">Projetos</a></li>
+          <li class="nav-item"><a href="{{url_for('root_routes.produtos')}}" class="nav-link" aria-current="true" id='produtos'>Produtos</a></li>
+          <li class="nav-item"><a href="{{url_for('root_routes.about')}}" class="nav-link" aria-current="true" id="about">Sobre nós</a></li>
+          <li class="nav-item"><a href="{{url_for('root_routes.contact')}}" class="nav-link" aria-current="true" id="contact">Contato</a></li>
+          <li class="nav-item"><button type="button" class="btn font_color_rodape" id="btn_abre_login" data-bs-toggle="modal" data-bs-target="#modal_login">
+            <i data-feather="log-in"></i>
+          </button></li>
+          <li class="nav-item"><button type="button" class="btn font_color_rodape" id="btn_logout" style="display: none;">
+            <i data-feather="log-out"></i>
+          </button></li>
+        </ul>
+      </header>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <!-- Button trigger modal -->
+    
+
+    <!-- Modal login -->
+    <div class="modal fade" id="modal_login" tabindex="-1" aria-labelledby="modal_login_label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_login_label">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="input_email" class="form-label form-label-sm">E-mail</label>
+                <input type="email" class="form-control form-control-sm" id="input_email" aria-describedby="emailHelp" required>
+              </div>
+              <div class="mb-3">
+                <label for="input_passe" class="form-label form-label-sm">Senha</label>
+                <input type="password" class="form-control form-control-sm" id="input_passe" required>
+              </div>
+              <div class="d-grid gap-2 col-8 mx-auto">
+                <button type="button" class="btn btn-link" id="btn_esqueci_senha"  data-bs-toggle="modal" data-bs-target="#modal_reset_envia_email" data-bs-dismiss="modal">Esqueci minha senha</button>
+                <div class="btn-group gap-2" role="group">
+                  <button type="button" class="btn btn-outline-primary col-5 " id="btn_login">Login</button>
+                  <button type="button" class="btn btn-outline-secondary col-5" id="btn_register" data-bs-toggle="modal" data-bs-target="#modal_register"  data-bs-dismiss="modal">Registrar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Reset Senha - Enviar email -->
+    <div class="modal fade" id="modal_reset_envia_email" tabindex="-1" aria-labelledby="modal_reset_envia_email_label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_reset_envia_email_label">Reset de senha</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="card text-dark bg-warning">
+              <div class="card-body">
+                Você receberá uma senha temporária no seu e-mail, basta usá-la para trocar sua senha.
+              </div>
+            </div>
+            <br>
+            <form>
+              <div class="mb-3">
+                <label for="input_email_reset_senha" class="form-label form-label-sm">E-mail</label>
+                <input type="email" class="form-control form-control-sm" id="input_email_reset_senha" aria-describedby="emailHelp" required>
+              </div>
+              <div class="d-grid gap-2 col-8 mx-auto">
+                <div class="btn-group gap-2" role="group">
+                  <button type="button" class="btn btn-outline-primary col-5 " id="btn_reset_envia_email">Enviar E-mail</button>
+                  <button type="button" class="btn btn-outline-danger col-5 " data-bs-target="#modal_login" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+                <button type="button" class="btn btn-outline-secondary col-12" data-bs-target="#modal_reset_senha" data-bs-toggle="modal" data-bs-dismiss="modal">Já possuo senha temporária</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- Modal Reset Senha -->
+        <div class="modal fade" id="modal_reset_senha" tabindex="-1" aria-labelledby="modal_reset_senha_label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modal_reset_senha_label">Reset de senha</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="senha_temporaria" class="form-label form-label-sm">Senha Temporária</label>
+                    <input type="password" class="form-control form-control-sm" id="senha_temporaria" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="senha_nova_1" class="form-label form-label-sm">Nova Senha</label>
+                    <input type="password" class="form-control form-control-sm" id="senha_nova_1" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="senha_nova_2" class="form-label form-label-sm">Confirmação da Nova Senha</label>
+                    <input type="password" class="form-control form-control-sm" id="senha_nova_2" required>
+                  </div>
+                  <div class="d-grid gap-2 col-8 mx-auto">
+                    <div class="btn-group gap-2" role="group">
+                      <button type="button" class="btn btn-outline-success col-5" id="btn_reset_confirma">Resetar</button>
+                      <button type="button" class="btn btn-outline-danger col-5" data-bs-target="#modal_login" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- Modal register -->
+    <div class="modal fade" id="modal_register" tabindex="-1" aria-labelledby="modal_register_label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_register_label">Registro</h5>
+            <button type="button" class="btn-close" data-bs-target="#modal_login" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="input_nome" class="form-label form-label-sm">Nome *</label>
+                <input type="text" class="form-control form-control-sm" id="input_nome" aria-describedby="nomeHelp"  placeholder="Lucas Garcia" required>
+              </div>
+              <div class="mb-3">
+                <label for="input_email_register" class="form-label form-label-sm">E-mail *</label>
+                <input type="email" class="form-control form-control-sm" id="input_email_register" aria-describedby="emailHelp" placeholder="nome@exemplo.com" required>
+              </div>
+              <div class="mb-3">
+                <label for="input_telefone" class="form-label form-label-sm">Celular *</label>
+                <input type="text" maxlength="13" class="form-control form-control-sm" id="input_telefone" aria-describedby="telefoneHelp"  placeholder="19 99300-7616">
+              </div>
+              <div class="mb-3">
+                <label for="input_endereco" class="form-label form-label-sm">Endereço *</label>
+                <input type="text" class="form-control form-control-sm" id="input_endereco" aria-describedby="enderecoHelp" placeholder="Rua: 9 de abril, 100" required>
+              </div>
+              <div class="row">
+                <div class="mb-3 col-9">
+                  <label for="input_cidade" class="form-label form-label-sm">Cidade *</label>
+                  <input type="text" class="form-control form-control-sm" id="input_cidade"  aria-describedby="cidadeHelp" placeholder="Mogi Guaçu" required>
+                </div>
+                <div class="mb-3 col-3">
+                  <label for="input_estado" class="form-label form-label-sm">Estado *</label>
+                  <input class="form-control form-control-sm" maxlength="2" list="datalistOptions" id="input_estado" placeholder="UF">
+                  <datalist id="datalistOptions">
+                    <option value="AC">
+                    <option value="AL">
+                    <option value="AP">
+                    <option value="AM">
+                    <option value="BA">
+                    <option value="CE">
+                    <option value="DF">
+                    <option value="ES">
+                    <option value="GO">
+                    <option value="MA">
+                    <option value="MT">
+                    <option value="MS">
+                    <option value="MG">
+                    <option value="PA">
+                    <option value="PB">
+                    <option value="PR">
+                    <option value="PE">
+                    <option value="PI">
+                    <option value="RJ">
+                    <option value="RN">
+                    <option value="RS">
+                    <option value="RO">
+                    <option value="RR">
+                    <option value="SC">
+                    <option value="SP">
+                    <option value="SE">
+                    <option value="TO">
+                  </datalist>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="input_passe_register" class="form-label form-label-sm">Senha *</label>
+                <input type="password" class="form-control form-control-sm" id="input_passe_register" required>
+              </div>
+              <div class="d-grid gap-2 col-5 mx-auto">
+                <button type="button" class="btn btn-outline-success" id="btn_confirm_register" data-bs-target="#modal_login" data-bs-toggle="modal" data-bs-dismiss="modal">Confirmar</button>
+                <button type="button" class="btn btn-outline-danger" id="btn_cancel_register"  data-bs-target="#modal_login" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% block content %}
+  {% endblock %}
+  </div>
+  <!--Whatpps-->
+  <a href="https://wa.me/5519989610200?text=Preciso%20de%20ajuda" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888; z-index:1000;" target="_blank">
+    <img style="margin-top:6px;margin-left:2px;width:38px;height:38px;" src="static/images/whatsapp.svg"></img>
+  </a>
+</body>
+<footer>
+  <nav class="navbar navbar-light" style="background-color: #233a3775">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 pt-1 mt-1 font_color_rodape">
+            <div class="pt-1 mt-1">
+              <img src="static\images\logopng.png" alt="Logo marmoraria" class="rounded mx-auto d-block" width="187" height="119">
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 pt-1 mt-1 font_color_rodape">
+            <div class="pt-1 mt-1">
+              <h3>Contato</h3>
+              <div class="pt-2 mt-2"><i data-feather="map-pin"></i> Mogi Guaçu, SP</div>
+              <div class="pt-2 mt-2"><i data-feather="mail"></i> marmoraria_2022@hotmail.com</div>
+              <div class="pt-2 mt-2"><i data-feather="phone"></i> 19 4002-8922</div>
+              <div class="pt-2 mt-2"><i data-feather="clock"></i> SEG A SEX 09:00 AM - 15:00 PM</div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 pt-1 mt-1 font_color_rodape">
+            <div class="pt-1 mt-1">
+              <h3>Links Rápidos</h3>
+              <div class="row col-6">
+                <div class="pt-2 mt-2 col-6"><i data-feather="instagram"></i></div>
+                <div class="pt-2 mt-2 col-6"><i data-feather="facebook"></i></div>
+                <div class="pt-2 mt-2 col-6"> Mármore</div>
+                <div class="pt-2 mt-2 col-6"> Granito</div>
+                <!-- <div class="pt-2 mt-2 col-6"> Pedra 1</div>
+                <div class="pt-2 mt-2 col-6"> Pedra 2</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </nav>
+</footer>
+
+<script>let utilisateur = '{{ session['utilisateur'] }}'</script>
+
+<script type='text/javascript' src="{{url_for('static', filename='js/external/sweetalert.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/popup.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/jquery-3.6.1.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/bootstrap.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/fancybox.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/topbar.js')}}"></script>
+</html>

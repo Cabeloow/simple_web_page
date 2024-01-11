@@ -1,0 +1,15 @@
+html, body{
+    height: 100%;
+ }
+
+.font_color_rodape {
+    color: white;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #296a56;
+}
+
+.nav-link {
+    color: white;
+}
