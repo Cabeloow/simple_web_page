@@ -1,0 +1,29 @@
+{% extends 'gerenciamento_topbar.html' %}
+{% block content %}
+<link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
+
+<div class="container">
+  <div class="row">
+    <div id="drop_zone" class="dropzone col-9">
+      <div class="dz-default dz-message">Arraste aqui as imagens ou clique para escolher!</div>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-success" type="button" id="btn_upload"><i data-feather="upload"></i></button>
+      <button class="btn btn-danger" type="button" id="btn_cancel"><i data-feather="trash"></i></button>
+    </div>
+  </div>
+    <br>
+    <br>
+    <div class="col">
+      <div class="row" id="imagesServer"></div>
+    </div>
+    <br>
+</div>  
+
+
+<script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.2/base64.min.js"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/jquery-3.6.1.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/ejs.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/gerenciamento_imagens.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'topbar.html' %}
+{% block content %}
+
+<div class="container w-50 align-items-stretch text-white">
+  <div class="col" style="padding: bottom 2em;">
+    <div class="font-weight-bold" style="color: #4e8880cc;">
+      <h6 style="letter-spacing: 4px;line-height: 37px;">CONTATO</h6>
+    </div>
+    <div class="row justify-content-between" aria-label="Anchor">
+      <div class="col-5">
+        <h3>Nossa equipe está pronta para te atender</h3>
+      </div>
+      <div class="col-6" aria-label="Anchor">
+        <p style="font-size: 14px;font-weight: 400;">
+          Solicite o agendamento com um de nossos consultores técnicos na data e horário de sua 
+          preferência pelo número (xx)x.xxxx-xxxx ou envie uma mensagem através do formulário abaixo.
+        </p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 1.00em;">
+      <div class="col w-100">
+        <form class="col">
+          <div class="form-group">
+            <label for="exampleFormControlInput1"></label>
+            <input type="email" class="form-control" id="" placeholder="Nome">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1"></label>
+            <input type="email" class="form-control" id="" placeholder="Endereço de e-mail">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1"></label>
+            <input type="tel" class="form-control"  id="phone" pattern="[0-9]" placeholder="Whatsapp">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"></label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Digite sua mensagem"></textarea>
+          </div>
+          <br>
+          <div class="row justify-content-center align-items-center">
+            <button type="submit" class="col-3 btn btn-light">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

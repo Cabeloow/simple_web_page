@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Face ANÁLISE">
+    <meta name="author" content="Ricardo Merces">
+
+    <title>Face ANÁLISE</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/external/bootstrap.css')}}">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="css/logo-nav.css" rel="stylesheet"> -->
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Face ANÁLISE</a>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <h2 class="mt-5">Foto Analisada</h2>
+      <img src="" id="foto_analisada" alt="" width="120" height="120">
+
+      <h2 class="mt-5">Pessoas Identificadas</h2>
+    </div>
+
+    <div class="container">
+      <table class="table" id="tabela-site">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Foto</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Face Match %</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+
+<h2 class="mt-5">Labels</h2>
+<div class="card">
+  <div class="card-body" id="teste">
+  </div>
+</div>
+</div>
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script type='text/javascript' src="{{url_for('static', filename='js/external/jquery-3.6.1.min.js')}}"></script>
+    <script type='text/javascript' src="{{url_for('static', filename='js/external/bootstrap.js')}}"></script>
+    <script type='text/javascript' src="{{url_for('static', filename='js/face.js')}}"></script>
+
+  </body>
+
+</html>

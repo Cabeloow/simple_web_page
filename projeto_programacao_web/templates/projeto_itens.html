@@ -1,0 +1,14 @@
+{% extends 'topbar.html' %}
+{% block content %}
+
+<div class="container page-top">
+    <div class="row" id="itens_projeto">
+    </div>
+</div>
+
+<script type='text/javascript' src="{{url_for('static', filename='js/external/jquery-3.6.1.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/fancybox.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/ejs.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/projeto_itens.js')}}"></script>
+
+{% endblock %}
