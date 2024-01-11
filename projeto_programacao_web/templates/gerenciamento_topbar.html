@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marmoraria</title>
+  <link rel="icon" type="image/x-icon" href="../images/icon_copy.ico">
+  <!-- import css -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/external/bootstrap.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/external/tabulator.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/home.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/projetos.css')}}">
+  <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+</head>
+<body class="bg-light">
+  <div class="container-fluid sticky-top" style="background-color: #1c2f2d">
+    <div class="container">
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="{{url_for('root_routes.gerenciamento')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <img src="{{url_for('static', filename='images/logopng.png')}}" alt="Logo marmoraria" width="93,5" height="59,5">
+        </a>
+
+        <ul class="nav nav-pills">
+          {% if session['utilisateur'] %}
+            <li class="nav-item"><a href="{{url_for('root_routes.gerenciamentoImagens')}}" class="nav-link ajax-trigger" aria-current="true" id="imagens">Imagens</a></li>
+            <li class="nav-item"><a href="{{url_for('root_routes.gerenciamentoProjetos')}}" class="nav-link ajax-trigger" aria-current="true" id="projetos">Projetos</a></li>
+            <li class="nav-item"><a href="{{url_for('root_routes.gerenciamentoProdutos')}}" class="nav-link ajax-trigger" aria-current="page" id='produtos'>Produtos</a></li>
+            <li class="nav-item"><a href="{{url_for('root_routes.gerenciamentoUsuarios')}}" class="nav-link ajax-trigger" aria-current="page" id='usuarios'>Usuarios</a></li>
+          {% else %}
+            <h3 class="btn font_color_rodape">Faça o Login com uma conta admin para acessar as abas de gerenciamento!!</h3>
+          {% endif %}
+          
+          <li class="nav-item"><button type="button" class="btn font_color_rodape" id="btn_abre_login" data-bs-toggle="modal" data-bs-target="#modal_login">
+            <i data-feather="log-in"></i>
+          </button></li>
+          <li class="nav-item"><button type="button" class="btn font_color_rodape" id="btn_logout" style="display: none;">
+            <i data-feather="log-out"></i>
+          </button></li>
+        </ul>
+      </header>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <!-- Button trigger modal -->
+
+    <!-- Modal login -->
+    <div class="modal fade" id="modal_login" tabindex="-1" aria-labelledby="modal_login_label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_login_label">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="input_email" class="form-label form-label-sm">E-mail</label>
+                <input type="email" class="form-control form-control-sm" id="input_email" aria-describedby="emailHelp" required>
+              </div>
+              <div class="mb-3">
+                <label for="input_passe" class="form-label form-label-sm">Senha</label>
+                <input type="password" class="form-control form-control-sm" id="input_passe" required>
+              </div>
+              <div class="d-grid gap-2 col-8 mx-auto">
+                <button type="button" class="btn btn-link" id="btn_esqueci_senha"  data-bs-toggle="modal" data-bs-target="#modal_reset_envia_email" data-bs-dismiss="modal">Esqueci minha senha</button>
+                <div class="btn-group gap-2" role="group">
+                  <button type="button" class="btn btn-outline-primary col-5 " id="btn_login">Login</button>
+                  <!-- <button type="button" class="btn btn-outline-secondary col-5" id="btn_register" data-bs-toggle="modal" data-bs-target="#modal_register"  data-bs-dismiss="modal">Registrar</button> -->
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Reset Senha - Enviar email -->
+    <div class="modal fade" id="modal_reset_envia_email" tabindex="-1" aria-labelledby="modal_reset_envia_email_label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_reset_envia_email_label">Reset de senha</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="card text-dark bg-warning">
+              <div class="card-body">
+                Você receberá uma senha temporária no seu e-mail, basta usá-la para trocar sua senha.
+              </div>
+            </div>
+            <br>
+            <form>
+              <div class="mb-3">
+                <label for="input_email_reset_senha" class="form-label form-label-sm">E-mail</label>
+                <input type="email" class="form-control form-control-sm" id="input_email_reset_senha" aria-describedby="emailHelp" required>
+              </div>
+              <div class="d-grid gap-2 col-8 mx-auto">
+                <div class="btn-group gap-2" role="group">
+                  <button type="button" class="btn btn-outline-primary col-5 " id="btn_reset_envia_email">Enviar E-mail</button>
+                  <button type="button" class="btn btn-outline-danger col-5 " data-bs-target="#modal_login" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+                <button type="button" class="btn btn-outline-secondary col-12" data-bs-target="#modal_reset_senha" data-bs-toggle="modal" data-bs-dismiss="modal">Já possuo senha temporária</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Reset Senha -->
+    <div class="modal fade" id="modal_reset_senha" tabindex="-1" aria-labelledby="modal_reset_senha_label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_reset_senha_label">Reset de senha</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="senha_temporaria" class="form-label form-label-sm">Senha Temporária</label>
+                <input type="password" class="form-control form-control-sm" id="senha_temporaria" required>
+              </div>
+              <div class="mb-3">
+                <label for="senha_nova_1" class="form-label form-label-sm">Nova Senha</label>
+                <input type="password" class="form-control form-control-sm" id="senha_nova_1" required>
+              </div>
+              <div class="mb-3">
+                <label for="senha_nova_2" class="form-label form-label-sm">Confirmação da Nova Senha</label>
+                <input type="password" class="form-control form-control-sm" id="senha_nova_2" required>
+              </div>
+              <div class="d-grid gap-2 col-8 mx-auto">
+                <div class="btn-group gap-2" role="group">
+                  <button type="button" class="btn btn-outline-success col-5" id="btn_reset_confirma">Resetar</button>
+                  <button type="button" class="btn btn-outline-danger col-5" data-bs-target="#modal_login" data-bs-toggle="modal" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% block content %}
+  {% endblock %}
+  </div>
+</body>
+
+<script>let utilisateur = '{{ session['utilisateur'] }}'</script>
+
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/sweetalert.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/popup.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/jquery-3.6.1.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/bootstrap.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/external/fancybox.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/gerenciamento_topbar.js')}}"></script>
+</html>

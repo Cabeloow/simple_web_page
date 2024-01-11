@@ -1,0 +1,56 @@
+{% extends 'topbar.html' %}
+{% block content %}
+
+<div class="d-flex container">
+  <div class="container-fluid row align-items-stretch">
+    <div class="col-6">
+      <h4 style="color: #296a56">
+        Seja bem-vindo!
+      </h4>
+      <br>
+      <h2 class="font_color_rodape">Inovação para o seu ambiente</h2>
+      <br>
+      <h7 class="font_color_rodape">Desde 1989, a marmoraria se dedica em oferecer atendimento personalizado, além de uma linha completa de produtos e serviços para revestir sua cozinha, banheiro, piscina e muito mais! Tudo com os melhores preços do mercado. Atendemos com excelência toda a região do interior de São Paulo.</h7>
+    </div>
+    <div class="col-6">
+      <div id="carrossel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+          <div class="carousel-indicators ">
+            <button type="button" data-bs-target="#carrossel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" ></button>
+            <button type="button" data-bs-target="#carrossel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carrossel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="static\images\banheiro.png"class="d-block w-100" alt="imagem de banheiro">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="font_color_rodape">Banheiros</h5>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="static\images\cozinha.jpeg" class="d-block w-100" alt="imagem de cozinha">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="font_color_rodape">Cozinhas</h5>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="static\images\lavanderia.png" class="d-block w-100" alt="imagem de lavanderia">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="font_color_rodape">Lavanderias</h5>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carrossel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carrossel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type='text/javascript' src="{{url_for('static', filename='js/home.js')}}"></script>
+
+{% endblock %}
